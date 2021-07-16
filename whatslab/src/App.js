@@ -16,6 +16,8 @@ const EstiloContainer = styled.div`
   border: black 1px solid;
 `;
 
+
+
 const EstiloInput = styled.input `
   margin-left: 5px;
   margin-right: 5px;
