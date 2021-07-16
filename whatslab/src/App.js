@@ -12,17 +12,39 @@ const EstiloRodape = styled.footer`
   bottom:0px; 
   left:0px; 
 `;
-const EstiloInput = styled.input`
-  margin-left: 5px;
-  margin-right: 5px;
-  width: 600px;
+const EstiloContainer = styled.div`
+  border: black 1px solid;
 `;
 class App extends React.Component {
   state = {
-
+    arrayMensagens: [
+      {
+          nomeUsuario: "",
+          mensagem: ""
+      }
+  ],
     valorInputUsuario: '',
     valorInputMensagem: ''
   }
+
+  addMensagem = () => {
+    let nomeUsuarioDigitado = ''
+    if(this.state.valorInputUsuario.toLocaleLowerCase() !== 'eu'){
+      nomeUsuarioDigitado = this.state.valorInputUsuario
+    } else {
+      nomeUsuarioDigitado = ''
+    }
+    
+    const novaMensagem = {
+        nomeUsuario: nomeUsuarioDigitado,
+        mensagem: this.state.valorInputMensagem
+    };
+    
+    const novoArrayMensagem = [...this.state.arrayMensagens, novaMensagem];
+    this.setState({arrayMensagens: novoArrayMensagem})
+    this.state.valorInputUsuario = '';
+    this.state.valorInputMensagem = ''
+  };
 
   onChangeInputUsuario = (event) => {
     this.setState({valorInputUsuario: event.target.value})
@@ -33,13 +55,25 @@ class App extends React.Component {
   };
 
   render() {
+    const ExibirMensagens = this.state.arrayMensagens.map((umaMensagem) => {
+      return (
+        <Mensagens
+        nomeUsuario={umaMensagem.nomeUsuario}
+        
+        mensagem={umaMensagem.mensagem}
+        
+
+        />
+        
+      )
+    });
   return (
-    <div className="App">
+    <EstiloContainer>
       <main>
 
       </main>
       
-      {/* <footer className='rodape'> */}
+      
       <EstiloRodape>
         <input 
           value={this.state.valorInputUsuario}
@@ -48,22 +82,19 @@ class App extends React.Component {
         >
         </input>
         <input 
-          className='inputMensagem'
+          
           value={this.state.valorInputMensagem}
           onChange={this.onChangeInputMensagem}
           placeholder={'Digite uma mensagem'}
         >
         </input>
         <button
-          onClick={Mensagens.this.state.add}
+         onClick={this.addMensagem} 
         >Enviar</button>
       </EstiloRodape> 
-       {/* </footer> */}
-      <Mensagens 
-        nomeUsuario='Samyr'
-        mensagem='Grupo unidos'
-      />
-    </div>
+       
+      {ExibirMensagens}
+    </EstiloContainer>
   );
 }
 }
