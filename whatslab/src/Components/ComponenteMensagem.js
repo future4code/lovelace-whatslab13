@@ -9,6 +9,8 @@ const EstiloContainer = styled.div`
         justify-content: space-between;    
         margin: 2px;
         padding: 5px;
+
+        
     }
 `
 
