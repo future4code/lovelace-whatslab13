@@ -15,6 +15,13 @@ const EstiloRodape = styled.footer`
 const EstiloContainer = styled.div`
   border: black 1px solid;
 `;
+
+const EstiloInput = styled.input `
+  margin-left: 5px;
+  margin-right: 5px;
+  width: 500px;
+`
+
 class App extends React.Component {
   state = {
     arrayMensagens: [
@@ -81,13 +88,13 @@ class App extends React.Component {
           placeholder={'Usuário'}
         >
         </input>
-        <input 
+        <EstiloInput 
           
           value={this.state.valorInputMensagem}
           onChange={this.onChangeInputMensagem}
           placeholder={'Digite uma mensagem'}
         >
-        </input>
+        </EstiloInput>
         <button
          onClick={this.addMensagem} 
         >Enviar</button>
